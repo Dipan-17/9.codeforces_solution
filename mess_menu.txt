@@ -1,0 +1,7 @@
+{
+    "Monday": "Pasta",
+    "Tuesday": "Burger",
+    "Wednesday": "Pizza",
+    "Thursday": "Salad",
+    "Friday": "Sushi"
+}

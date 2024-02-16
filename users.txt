@@ -1,0 +1,40 @@
+[
+    {
+        "Email": "dean@nits.ac.in",
+        "Password": "dean_password",
+        "Role": "Dean",
+        "Hostel": "BH1"
+    },
+    {
+        "Email": "supervisor_bh1@nits.ac.in",
+        "Password": "supervisor_password",
+        "Role": "Supervisor",
+        "Hostel": "BH1"
+    },
+    
+    {
+        "Email": "student1@nits.ac.in",
+        "Password": "student1_password",
+        "Role": "Student",
+        "Hostel": "BH1"
+    },
+    {
+        "Email": "student2@nits.ac.in",
+        "Password": "student2_password",
+        "Role": "Student",
+        "Hostel": "BH2"
+    },
+    
+    {
+        "Email": "mmc_bh1@nits.ac.in",
+        "Password": "mmc_password",
+        "Role": "MMC",
+        "Hostel": "BH1"
+    },
+    {
+        "Email": "manager_bh1@nits.ac.in",
+        "Password": "manager_password",
+        "Role": "MessManager",
+        "Hostel": "BH1"
+    }
+]

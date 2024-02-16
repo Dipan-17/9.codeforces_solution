@@ -1,0 +1,11 @@
+def decFunc(f):
+    def innerFunc():
+        print("Welcome")
+        f()
+        return innerFunc
+
+def func():
+    print("user")
+
+func=decFunc(func)
+func

@@ -1,0 +1,4 @@
+{
+    "MessFood": ["Complaint 1", "Complaint 2"],
+    "HostelCondition": ["Complaint 3"]
+}

@@ -1,0 +1,10 @@
+[
+    {
+        "Email": "student1@nits.ac.in",
+        "DaysPresent": 15
+    },
+    {
+        "Email": "student2@nits.ac.in",
+        "DaysPresent": 12
+    }
+]

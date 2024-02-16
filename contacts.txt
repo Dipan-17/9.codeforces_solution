@@ -1,0 +1,11 @@
+{
+    "Warden": {
+        "BH1": "Warden 1",
+        "BH2": "Warden 2"
+    },
+    "Dean": "Dean Name",
+    "Supervisor": {
+        "BH1": "Supervisor 1",
+        "BH2": "Supervisor 2"
+    }
+}
