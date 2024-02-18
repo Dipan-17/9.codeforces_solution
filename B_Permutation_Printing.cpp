@@ -56,19 +56,12 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
-            }
+        ll n;cin>>n;
+        ll s=1,e=n;
+        ff(i,0,n){
+            if(i%2==0)cout<<s++<<" ";
+            else cout<<e--<<" ";
         }
-        co(ans);
     }
 };
 
@@ -76,7 +69,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-    // cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

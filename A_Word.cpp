@@ -10,6 +10,7 @@ int main()
     string s;
     cin>>s;
     int lc=0,uc=0;
+    
     for(char c:s){
         if(c>='a' && c<='z')lc++;
         else uc++;

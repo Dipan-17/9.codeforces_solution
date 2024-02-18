@@ -56,19 +56,16 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
+        ll n;cin>>n;
         string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
-            }
+        ll ac=0,dc=0;
+        for(auto i:s){
+            if(i=='A')ac++;
+            else dc++;
         }
-        co(ans);
+        if(ac>dc)cout<<"Anton";
+        else if(ac<dc)cout<<"Danik";
+        else cout<<"Friendship";
     }
 };
 

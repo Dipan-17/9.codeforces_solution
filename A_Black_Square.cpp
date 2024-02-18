@@ -56,19 +56,16 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
-            }
+        vl v(4);
+        readvector(v);
+        string s;
+        cin>>s;
+        ll sum=0;
+        for(auto i:s){
+            int c=i-'0';
+            sum+=v[c-1];
         }
-        co(ans);
+        co(sum);
     }
 };
 

@@ -56,17 +56,15 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
         string s;cin>>s;
-        char c=s[0];
         int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
-            }
+        char curr='a';
+
+        for(auto i:s){
+            int clock=abs(i-curr);
+            int antiClock=abs(26-clock);
+            curr=i;
+            ans+=min(clock,antiClock);
         }
         co(ans);
     }

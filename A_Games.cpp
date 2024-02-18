@@ -57,19 +57,23 @@ public:
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
         int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
+        vector<ppi>v;
+        ff(i,0,n){
+            int h,a;
+            cin>>h>>a;
+            v.push_back({h,a});
+        }
         int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
+        ff(i,0,n){
+            int hosthome=v[i].first;
+            ff(j,0,n){
+                if(i==j)continue;
+                int guestAway=v[j].second;
+                if(hosthome==guestAway)ans++;
             }
         }
         co(ans);
-    }
+   }    
 };
 
 int main() {

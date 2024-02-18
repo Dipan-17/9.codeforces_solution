@@ -56,19 +56,33 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
+        ll n;cin>>n;
+        vl v(n);
+        readvector(v);
+
+        ll i=0,j=n-1,turn=1,ser=0,dim=0;
+        while(i<=j){
+            if(turn==1){
+                if(v[i]>=v[j]){
+                    ser+=v[i];
+                    i++;
+                }else{
+                    ser+=v[j];
+                    j--;
+                }
+                turn=0;
             }else{
-                ans++;
+                if(v[i]>=v[j]){
+                    dim+=v[i];
+                    i++;
+                }else{
+                    dim+=v[j];
+                    j--;
+                }
+                turn=1;
             }
         }
-        co(ans);
+        cout<<ser<<" "<<dim;
     }
 };
 

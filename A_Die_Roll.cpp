@@ -56,19 +56,21 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
+        int y,w;cin>>y>>w;
+        int req=max(y,w);
+        
+        int num=6-req+1;
+        int deno=6;
+
+        for(int i=2;i<=min(num,deno);i++){
+            if(num%i==0 && deno%i==0){
+                num/=i;
+                deno/=i;
             }
         }
-        co(ans);
+        cout<<num<<"/"<<deno;
+        
+
     }
 };
 

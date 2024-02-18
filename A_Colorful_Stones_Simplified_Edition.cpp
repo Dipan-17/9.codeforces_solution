@@ -56,19 +56,16 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
-            }
+        string s,t;
+        cin>>s>>t;
+
+        int i=0;
+        ff(j,0,t.size()){
+            char sit=s[i];
+            char ins=t[j];
+            if(sit==ins)i++;
         }
-        co(ans);
+        co(i+1);
     }
 };
 

@@ -56,18 +56,18 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        int n;cin>>n;
-        string s;cin>>s;
-        char c=s[0];
-        int ans=0;
-        ff(i,1,n){
-            char cc=s[i];
-            if(cc!=c){
-                c=cc;
-            }else{
-                ans++;
+        int p,q;
+        ff(i,1,6){
+            ff(j,1,6){
+                int x;cin>>x;
+                if(x==1){
+                    p=i;
+                    q=j;break;
+                }
             }
         }
+   
+        int ans=abs(p-3)+abs(q-3);
         co(ans);
     }
 };
