@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -53,18 +52,68 @@ bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else 
 
 class Solution {
 public:
-    void solve() {
+    void solve(){
+        vector<pair<char,char>>v;
+        ff(i,0,3){
+            char a,x,b;
+            cin>>a>>x>>b;
+            if(x=='<')v.pb({a,b});
+            else v.pb({b,a});
+        }
+        
+        vector<int>freq(3,0);
+        for(auto i:v){
+            freq[i.second-'A']++;
+        }
+        if(freq[0]==1 && freq[1]==1 && freq[2]==1){
+            cout<<"Impossible";
+            return;
+        }
+        string ans="";
+        ff(i,0,3){
+            if(freq[i]==0)ans+='A'+i;
+        }
+        ff(i,0,3){
+            if(freq[i]==1)ans+='A'+i;
+        }
+        ff(i,0,3){
+            if(freq[i]==2)ans+='A'+i;
+        }
+        co(ans);
+    }
+    void solve1() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        ll ans=0;
-        while(s.size()>1){
-            ll curr=0;
-            for(auto i:s){
-                curr+=i-'0';
-            }
-            s=to_string(curr);
-            ans++;
+        vector<pair<char,char>>v;
+        ff(i,0,3){
+            char a,x,b;
+            cin>>a>>x>>b;
+            if(x=='<')v.pb({a,b});
+            else v.pb({b,a});
+        }
+        vector<set<char>>so(2);
+        for(auto i:v){
+            so[0].insert(i.first);
+            so[1].insert(i.second);
+        }
+        if(so[0].size()>2 || so[1].size()>2){
+            cout<<"Impossible";
+            return;
+        }
+
+        string ans="";
+        if(so[1].find(*so[0].begin())!=so[1].end()){
+            ans+=*(so[0].rbegin());
+            ans+=*(so[0].begin());
+        }else{
+            ans+=*(so[0].begin());
+            ans+=*(so[0].rbegin());
+        }
+
+        if(so[0].find(*so[1].begin())!=so[0].end()){
+            ans+=*(so[1].rbegin());
+        }else{
+            ans+=*(so[1].begin());
         }
         co(ans);
     }

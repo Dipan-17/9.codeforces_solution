@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -56,17 +55,21 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        ll ans=0;
-        while(s.size()>1){
-            ll curr=0;
-            for(auto i:s){
-                curr+=i-'0';
+        ll n;cin>>n;
+        
+        ll energy=0,prev=0,coins=0;
+
+        ff(i,0,n){
+            ll curr;cin>>curr;
+            energy+=(prev-curr);
+            if(energy<0){
+                coins+=-1*(energy);
+                energy=0;
             }
-            s=to_string(curr);
-            ans++;
+            prev=curr;
         }
-        co(ans);
+
+        co(coins);
     }
 };
 

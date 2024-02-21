@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -53,20 +52,29 @@ bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else 
 
 class Solution {
 public:
+   
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
+        ll n;cin>>n;
         string s;cin>>s;
-        ll ans=0;
-        while(s.size()>1){
-            ll curr=0;
-            for(auto i:s){
-                curr+=i-'0';
+        if(n==1||n==2){cout<<s;return;}
+        string ans="";
+        bool start=false;
+        if(n%2==0)start=true;
+   
+        for(auto i:s){
+            if(start){
+                ans=i+ans;
+                start=false;
+                continue;
+            }else{
+                ans+=i;
+                start=true;
+                continue;
             }
-            s=to_string(curr);
-            ans++;
         }
-        co(ans);
+        cout<<ans;
     }
 };
 

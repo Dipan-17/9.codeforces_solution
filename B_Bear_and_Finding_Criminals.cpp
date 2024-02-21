@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -56,17 +55,30 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        ll ans=0;
-        while(s.size()>1){
-            ll curr=0;
-            for(auto i:s){
-                curr+=i-'0';
-            }
-            s=to_string(curr);
-            ans++;
+        int n,a;cin>>n>>a;
+        a--;
+        vi v(n);
+        readvector(v);
+
+        int ans=0;
+        
+        if(v[a]==1)ans++;
+        
+        int i=a-1,j=a+1;
+        while(i>=0 && j<n){
+            if(v[i]==1 && v[j]==1)ans+=2; //only sure if both sides have thieve
+            //if one side cant decide which one
+            i--;
+            j++;
+        }
+        while(i>=0){
+            ans+=v[i--];
+        }
+        while(j<n){
+            ans+=v[j++];
         }
         co(ans);
+
     }
 };
 
