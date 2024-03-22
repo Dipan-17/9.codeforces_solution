@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -53,25 +52,41 @@ bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else 
 
 class Solution {
 public:
+    bool isValid(int n,int m,int i,int j){
+        if(i>=0 && j>=0 && i<n && j<m)return true;
+        else return false;
+    }
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        tn;
-        vl v(n);
-        readvector(v);
-        if(n==1 || n==2){cout<<abs(v[n-1]-v[0]);return;}
+        int n,m;cin>>n>>m;
+        char c;cin>>c;
+        vector<vector<char>>grid(n,vector<char>(m));
+        ff(i,0,n){
+            ff(j,0,m){
+                char x;cin>>x;
+                grid[i][j]=x;
+            }
+        }
+        set<char>s;
 
-        ll ans=INT_MIN;
-        //no subarray chosse
-        ans=max(ans,v[n-1]-v[0]);
-        //last element not
-        ff(i,0,n-1)ans=max(ans,v[n-1]-v[i]);
-        //first element not
-        ff(i,1,n-1)ans=max(ans,v[i]-v[0]);
-        //entire subarray chosen
-        for(int i=0;i<n;++i)ans=max(ans,v[(i-1+n)%n]-v[i]);
-
-        co(ans);
+        vi di={-1,0,1,0};
+        vi dj={0,1,0,-1};
+        
+        ff(i,0,n){
+            ff(j,0,m){
+                char x=grid[i][j];
+                if(x!=c)continue;
+                ff(k,0,4){
+                    int dr=i+di[k];
+                    int dc=j+dj[k];
+                    if(isValid(n,m,dr,dc) && grid[dr][dc]!='.' && grid[dr][dc]!=c){
+                        s.insert(grid[dr][dc]);
+                    }
+                }
+            }
+        }
+        co(s.size());
     }
 };
 
@@ -79,7 +94,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-    cin >> tc;
+    // cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

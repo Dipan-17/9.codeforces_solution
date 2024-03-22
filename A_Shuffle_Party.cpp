@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -50,27 +49,22 @@ ll gcd(ll a,ll b) { if (b==0) return a; return gcd(b, a%b); }
 ll lcm(ll a,ll b) { return a/gcd(a,b)*b; }
 bool isPrime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
 bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else return false;}
+long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b > 0) {if (b & 1){res = res * a % MOD;}a = a * a % MOD;b >>= 1;}return res;}
 
 class Solution {
 public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        tn;
-        vl v(n);
-        readvector(v);
-        if(n==1 || n==2){cout<<abs(v[n-1]-v[0]);return;}
-
-        ll ans=INT_MIN;
-        //no subarray chosse
-        ans=max(ans,v[n-1]-v[0]);
-        //last element not
-        ff(i,0,n-1)ans=max(ans,v[n-1]-v[i]);
-        //first element not
-        ff(i,1,n-1)ans=max(ans,v[i]-v[0]);
-        //entire subarray chosen
-        for(int i=0;i<n;++i)ans=max(ans,v[(i-1+n)%n]-v[i]);
-
+        ll n;cin>>n;
+        if(n==1){cout<<1;return;}
+        if(n<4){cout<<2;return;}
+        
+        ll x=4,ans=x;
+        while(x<=n){
+            ans=x;
+            x*=2;
+        }
         co(ans);
     }
 };
@@ -79,7 +73,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-    cin >> tc;
+     cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

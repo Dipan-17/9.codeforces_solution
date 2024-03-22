@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -56,22 +55,30 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
+
+        //rem of 3 : possible ans: 0,1,2
+
         tn;
         vl v(n);
         readvector(v);
-        if(n==1 || n==2){cout<<abs(v[n-1]-v[0]);return;}
 
-        ll ans=INT_MIN;
-        //no subarray chosse
-        ans=max(ans,v[n-1]-v[0]);
-        //last element not
-        ff(i,0,n-1)ans=max(ans,v[n-1]-v[i]);
-        //first element not
-        ff(i,1,n-1)ans=max(ans,v[i]-v[0]);
-        //entire subarray chosen
-        for(int i=0;i<n;++i)ans=max(ans,v[(i-1+n)%n]-v[i]);
+        ll sum=accumulate(all(v),0);
+        //best case multiple of 3
+        if(sum%3==0){
+            cout<<0;
+            return;
+        }
+        //next case: add 1 and go to next multiple of 3
+        ll nume=sum/3;
+        ll nextMul=(nume+1)*3;
+        if(nextMul-sum==1){cout<<1;return;}
 
-        co(ans);
+        //next case: remove any one element and go to any previous multiple of 3
+        for(auto i:v){
+            if((sum-i)%3==0){cout<<1;return;}
+        }
+        //else just add 2
+        cout<<2;
     }
 };
 

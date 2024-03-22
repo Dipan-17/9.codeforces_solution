@@ -10,9 +10,8 @@ using namespace std;
 #define ml map<long long,long long>
 #define ppi pair<int,int>
 #define ppl pair<long long,long long>
-#define F first
-#define S second
 //small functions
+#define all(a) (a).begin(), (a).end()
 #define sa(a,n) sort(a,a+n)
 #define sv(v) sort(v.begin(),v.end())
 #define l(s) s.length()
@@ -37,7 +36,6 @@ using namespace std;
 //constants
 #define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
-//modular arithmetic
 long long mod(long long n){return ((n%MOD+MOD)%MOD);}
 long long mul(long long a,long long b){return (mod(mod(a)*mod(b)));}
 long long add(long long a, long long b){return (mod(mod(a)+mod(b)));}
@@ -56,21 +54,11 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        tn;
-        vl v(n);
-        readvector(v);
-        if(n==1 || n==2){cout<<abs(v[n-1]-v[0]);return;}
+        string n;cin>>n;
 
-        ll ans=INT_MIN;
-        //no subarray chosse
-        ans=max(ans,v[n-1]-v[0]);
-        //last element not
-        ff(i,0,n-1)ans=max(ans,v[n-1]-v[i]);
-        //first element not
-        ff(i,1,n-1)ans=max(ans,v[i]-v[0]);
-        //entire subarray chosen
-        for(int i=0;i<n;++i)ans=max(ans,v[(i-1+n)%n]-v[i]);
-
+        string ans=(n);
+        reverse(all(n));
+        ans+=n;
         co(ans);
     }
 };
@@ -79,7 +67,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-    cin >> tc;
+    // cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

@@ -51,17 +51,22 @@ public:
        ff(i,0,n){ 
         if(v[i]!=t[i]){//compare with sorted to find the indexes
             if(l==-1)l=i;//only the first time update
-            r=i+1; //i+1 cause the end index in reverse is not inclusive
+            r=i;
         }
        }
        
      
        
-       reverse(v.begin()+l,v.begin()+r);//reverse the segment
+       reverse(v.begin()+l,v.begin()+r+1);//reverse the segment +1 cause last is not inclusive
        
        if(is_sorted(v.begin(),v.end())){
-        if(l==-1 && r==-1){l=0;r=1;}
-        cout<<"yes";nl;cout<<l+1<<" "<<r;
+            cout<<"yes"<<endl;
+            if(l==-1 && r==-1){
+                cout<<1<<" "<<1;
+            }
+            else {
+                cout<<l+1<<" "<<r+1; //1 bases indexing
+            }
        }
        else cout<<"no";
     }
