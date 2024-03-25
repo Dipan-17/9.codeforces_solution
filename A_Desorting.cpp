@@ -34,7 +34,7 @@ using namespace std;
 #define cn cout<<"NO\n"
 #define nl cout<<"\n"
 //constants
-#define MOD 10000000007
+#define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
 //modular arithmetic
 long long mod(long long n){return ((n%MOD+MOD)%MOD);}
@@ -53,60 +53,26 @@ long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b
 
 class Solution {
 public:
-    ll maxSubArraySum(vector<ll>a){
-        ll size=a.size();
-        ll max_so_far = INT_MIN, max_ending_here = 0;
- 
-        for (ll i = 0; i < size; i++) {
-            max_ending_here = (max_ending_here + a[i]);
-            if (max_so_far < max_ending_here)
-                max_so_far = max_ending_here;
-    
-            if (max_ending_here < 0)
-                max_ending_here = 0;
-        }
-        return max_so_far;
-    }
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        ll n,k;cin>>n>>k;
-        vl v(n);
-        readvector(v);
-
-        ll ms=maxSubArraySum(v);
-       
-       // co(ms);
-        //return;
-       
-        ll s=0;
-        for(auto i:v){
-                s+=i;
+        ll n;cin>>n;vl v(n);readvector(v);
+        //already not
+        ff(i,0,n-1){
+            if(v[i]>v[i+1]){cout<<0;return;}
         }
-        
-
-        if(ms<=0){
-            if(s<0){
-                s+=MOD;
-                s%MOD;    
-            }
-            co(s);
-            return;
+        ll mm=INT_MAX;
+        ff(i,0,n-1){
+            ll d=v[i+1]-v[i];
+            mm=min(mm,d);
         }
-        
-        ll add=ms;
-        ll aaa=add;
+        ll ans;
+        if(mm%2==0){
+            ans=mm/2+1;
+        }else ans=(mm+1)/2;
 
-        ff(i,2,k+1){
-            add=((2*add))%MOD;    
-            aaa=(aaa%MOD+add)%MOD;
-        }
-
-        ll ans=((aaa+s))%MOD;
-        if(ans<0){
-            ans=(ans+MOD)%MOD;
-        }
         cout<<ans;
+
     }
 };
 

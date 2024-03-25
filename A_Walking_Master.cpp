@@ -34,7 +34,7 @@ using namespace std;
 #define cn cout<<"NO\n"
 #define nl cout<<"\n"
 //constants
-#define MOD 10000000007
+#define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
 //modular arithmetic
 long long mod(long long n){return ((n%MOD+MOD)%MOD);}
@@ -53,60 +53,20 @@ long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b
 
 class Solution {
 public:
-    ll maxSubArraySum(vector<ll>a){
-        ll size=a.size();
-        ll max_so_far = INT_MIN, max_ending_here = 0;
- 
-        for (ll i = 0; i < size; i++) {
-            max_ending_here = (max_ending_here + a[i]);
-            if (max_so_far < max_ending_here)
-                max_so_far = max_ending_here;
-    
-            if (max_ending_here < 0)
-                max_ending_here = 0;
-        }
-        return max_so_far;
-    }
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        ll n,k;cin>>n>>k;
-        vl v(n);
-        readvector(v);
-
-        ll ms=maxSubArraySum(v);
-       
-       // co(ms);
+        ll a,b,c,d;cin>>a>>b>>c>>d;
+        //to go: a,b, -> c,d
+        //move -> x-1,y or x+1,y+1
+        if(d<b){cout<<-1;return;}
+        ll my=d-b;
+        a+=my;
+        if(a<c){cout<<-1;return;}
+        ll mx=abs(c-a);
+       // cout<<mx<<" "<<my;
         //return;
-       
-        ll s=0;
-        for(auto i:v){
-                s+=i;
-        }
-        
-
-        if(ms<=0){
-            if(s<0){
-                s+=MOD;
-                s%MOD;    
-            }
-            co(s);
-            return;
-        }
-        
-        ll add=ms;
-        ll aaa=add;
-
-        ff(i,2,k+1){
-            add=((2*add))%MOD;    
-            aaa=(aaa%MOD+add)%MOD;
-        }
-
-        ll ans=((aaa+s))%MOD;
-        if(ans<0){
-            ans=(ans+MOD)%MOD;
-        }
-        cout<<ans;
+        co(mx+my);
     }
 };
 
@@ -114,7 +74,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-    cin >> tc;
+     cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

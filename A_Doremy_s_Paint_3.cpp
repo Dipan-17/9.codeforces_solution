@@ -10,13 +10,14 @@ public:
         for(int i=0;i<n;i++){
             int x;cin>>x;mp[x]++;
         }
-        if(mp.size()>2){cout<<"No"<<endl;;return;}
         if(mp.size()==1){cout<<"Yes"<<endl;return;}
-
-        if(abs(mp.begin()->second - mp.rbegin()->second) <=1 ){
-            cout<<"Yes"<<endl;return;
-        }cout<<"No"<<endl;
-
+        if(mp.size()>2){cout<<"No"<<endl;;return;}
+        //2 different elements
+        //even -> must be same freq
+        //odd -> koi ek 1 jyada ho skta max
+        if(abs(mp.begin()->second-mp.rbegin()->second)<=1)cout<<"Yes";
+        else cout<<"No";
+        cout<<endl;
 
     }
 };

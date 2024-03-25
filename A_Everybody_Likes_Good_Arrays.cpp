@@ -34,7 +34,7 @@ using namespace std;
 #define cn cout<<"NO\n"
 #define nl cout<<"\n"
 //constants
-#define MOD 10000000007
+#define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
 //modular arithmetic
 long long mod(long long n){return ((n%MOD+MOD)%MOD);}
@@ -53,58 +53,22 @@ long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b
 
 class Solution {
 public:
-    ll maxSubArraySum(vector<ll>a){
-        ll size=a.size();
-        ll max_so_far = INT_MIN, max_ending_here = 0;
- 
-        for (ll i = 0; i < size; i++) {
-            max_ending_here = (max_ending_here + a[i]);
-            if (max_so_far < max_ending_here)
-                max_so_far = max_ending_here;
-    
-            if (max_ending_here < 0)
-                max_ending_here = 0;
-        }
-        return max_so_far;
+    bool ok(ll a,ll b){
+        if(a%2==0 && b%2!=0)return 1;
+        if(a%2!=0 && b%2==0)return 1;
+        return 0;
     }
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        ll n,k;cin>>n>>k;
-        vl v(n);
-        readvector(v);
-
-        ll ms=maxSubArraySum(v);
-       
-       // co(ms);
-        //return;
-       
-        ll s=0;
-        for(auto i:v){
-                s+=i;
-        }
-        
-
-        if(ms<=0){
-            if(s<0){
-                s+=MOD;
-                s%MOD;    
-            }
-            co(s);
-            return;
-        }
-        
-        ll add=ms;
-        ll aaa=add;
-
-        ff(i,2,k+1){
-            add=((2*add))%MOD;    
-            aaa=(aaa%MOD+add)%MOD;
-        }
-
-        ll ans=((aaa+s))%MOD;
-        if(ans<0){
-            ans=(ans+MOD)%MOD;
+        ll n;cin>>n;vl a(n);readvector(a);
+        if(n==1){cout<<0;return;}
+         //initialize answer..
+        int ans=0;
+        for(int i=0;i+1<n;i++) {
+            ans+=(!((a[i]^a[i+1])&1));
+            /*XOR the two numbers and check 0th bit in the resultant, if it is 1
+            then, numbers are of different parity, otherwise both are of same parity*/
         }
         cout<<ans;
     }
