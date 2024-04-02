@@ -53,29 +53,31 @@ long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b
 
 class Solution {
 public:
+    int totcount(string s, string t) {
+        int count = 0;
+        int l = s.length();
+        while(s.length() > 0 && t.length() > 0) {
+            if(s.back() == t.back())t.pop_back();
+            else count++;
+            
+            s.pop_back();
+        }
+        if(t.length() == 0){
+            return count;
+        }
+        return l;
+    }
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
         string s;cin>>s;
-        //if double found -> right most is helpful (cause length remain same but value decrease eg: 5+5 =10)
-        //else left most -> cause value if greater than or equal 2+5=7
-        fb(i,s.size()-2,0){
-            if(s[i]-'0'+s[i+1]-'0'>=10){
-                ll sum=(s[i]-'0')+(s[i+1]-'0');
-                string ss=to_string(sum);
-                s[i]=ss[0];
-                s[i+1]=ss[1];
-                cout<<s;
-                return;
-            }
+        if(s.size()<2){cout<<s.size();return;}
+        string aa[]=  {"00","25","50","75"};
+        ll ans=INT_MAX;
+        ff(i,0,4){
+            ans=min(ans,totcount(s,aa[i]));
         }
-        //left most
-        ll sum=(s[0]-'0')+(s[1]-'0');
-        string ss=to_string(sum);
-        s=s.substr(2,s.size()-2);//remove the first 2 digits from string
-        cout<<ss<<s;//print the new sum of the first two digits - removed part
-
-
+        co(ans);
     }
 };
 
@@ -83,7 +85,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-     cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

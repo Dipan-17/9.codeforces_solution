@@ -51,42 +51,60 @@ bool isPrime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if 
 bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else return false;}
 long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b > 0) {if (b & 1){res = res * a % MOD;}a = a * a % MOD;b >>= 1;}return res;}
 
-class Solution {
-public:
-    void solve() {
+
+vector<int> validNumbers;
+bool isDigitOneOrZero(int num) {
+    while (num > 0) {
+        int remainder = num % 10;
+        if (remainder == 1 || remainder == 0) {
+            num = num / 10;
+            continue;
+        }
+        return false;
+    }
+    return true;
+}
+void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        //if double found -> right most is helpful (cause length remain same but value decrease eg: 5+5 =10)
-        //else left most -> cause value if greater than or equal 2+5=7
-        fb(i,s.size()-2,0){
-            if(s[i]-'0'+s[i+1]-'0'>=10){
-                ll sum=(s[i]-'0')+(s[i+1]-'0');
-                string ss=to_string(sum);
-                s[i]=ss[0];
-                s[i+1]=ss[1];
-                cout<<s;
-                return;
+        int number;
+        cin >> number;
+
+        int index = validNumbers.size() - 1;
+        while (number > 0 && index >= 0) {//check for non zero
+            //this takes cares of non binaryy
+            if (number % validNumbers[index] == 0 && validNumbers[index] != 1) {
+                number = number / validNumbers[index];
+                continue;
             }
+            //move back
+            //pre computed
+            //so no more time
+            index--;
+
         }
-        //left most
-        ll sum=(s[0]-'0')+(s[1]-'0');
-        string ss=to_string(sum);
-        s=s.substr(2,s.size()-2);//remove the first 2 digits from string
-        cout<<ss<<s;//print the new sum of the first two digits - removed part
 
+       if(number>1)cout<<"NO";
+       else cout<<"YES";
+}
 
-    }
-};
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-     cin >> tc;
+    cin >> tc;
+    
+    
+    for (int i = 1; i <= 1e5; i++) {
+        if (isDigitOneOrZero(i)) {
+            validNumbers.push_back(i);
+        }
+    }
+    
     for (ll t = 1; t <= tc; t++) {
-        Solution s;
-        s.solve();
+    
+        solve();
         nl;
     }
     return 0;

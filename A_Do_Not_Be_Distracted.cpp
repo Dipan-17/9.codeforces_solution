@@ -56,26 +56,18 @@ public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        //if double found -> right most is helpful (cause length remain same but value decrease eg: 5+5 =10)
-        //else left most -> cause value if greater than or equal 2+5=7
-        fb(i,s.size()-2,0){
-            if(s[i]-'0'+s[i+1]-'0'>=10){
-                ll sum=(s[i]-'0')+(s[i+1]-'0');
-                string ss=to_string(sum);
-                s[i]=ss[0];
-                s[i+1]=ss[1];
-                cout<<s;
-                return;
+        ll n;cin>>n;string s;cin>>s;
+        set<char>st;
+        ff(i,0,n){
+            char cur=s[i];
+            if(st.find(cur)!=st.end()){cout<<"NO";return;}
+            else{
+                st.insert(cur);
+                while(i<n && s[i]==cur)i++;
+                i--;
             }
         }
-        //left most
-        ll sum=(s[0]-'0')+(s[1]-'0');
-        string ss=to_string(sum);
-        s=s.substr(2,s.size()-2);//remove the first 2 digits from string
-        cout<<ss<<s;//print the new sum of the first two digits - removed part
-
-
+        cout<<"YES";
     }
 };
 

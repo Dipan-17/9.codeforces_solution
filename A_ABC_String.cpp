@@ -53,29 +53,43 @@ long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b
 
 class Solution {
 public:
+    bool isReg(string s){
+        ll oc=0;
+        for(auto i:s){
+            if(i=='(')oc++;
+            else oc--;
+            if(oc<0)return false;
+        }
+        if(oc==0)return true;
+        else return false;
+    }
+
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        //if double found -> right most is helpful (cause length remain same but value decrease eg: 5+5 =10)
-        //else left most -> cause value if greater than or equal 2+5=7
-        fb(i,s.size()-2,0){
-            if(s[i]-'0'+s[i+1]-'0'>=10){
-                ll sum=(s[i]-'0')+(s[i+1]-'0');
-                string ss=to_string(sum);
-                s[i]=ss[0];
-                s[i+1]=ss[1];
-                cout<<s;
-                return;
-            }
+        string s;cin>>s;ll n=s.size();
+        if(s[0]==s[n-1]){cout<<"NO";return;}
+        vector<int>ele(3);//A B C
+        for(auto i:s)ele[i-'A']++;
+        if(!(ele[0]==n/2 || ele[1]==n/2 || ele[2]==n/2)){cout<<"NO";return;}
+
+        //we gurantee that the first and last elements are diff
+        vector<char>p1(3,'('),p2(3,')');
+
+        p1[s[0]-'A']='(';
+        p1[s[n-1]-'A']=')';
+        p2[s[0]-'A']='(';
+        p2[s[n-1]-'A']=')';
+
+        string pos1="",pos2="";
+        for(auto i:s){
+            pos1+=p1[i-'A'];
+            pos2+=p2[i-'A'];
         }
-        //left most
-        ll sum=(s[0]-'0')+(s[1]-'0');
-        string ss=to_string(sum);
-        s=s.substr(2,s.size()-2);//remove the first 2 digits from string
-        cout<<ss<<s;//print the new sum of the first two digits - removed part
-
-
+        // cout<<pos1<<" "<<pos2;
+        // return;
+        if(isReg(pos1)||isReg(pos2))cout<<"YES";
+        else cout<<"NO";
     }
 };
 
@@ -83,7 +97,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-     cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();

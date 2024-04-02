@@ -75,37 +75,25 @@ public:
         readvector(v);
 
         ll ms=maxSubArraySum(v);
-       
-       // co(ms);
-        //return;
+
        
         ll s=0;
         for(auto i:v){
                 s+=i;
         }
+        ms=max(ms,0);
+
+        s=(s%MOD+MOD)%MOD;
+        ms=ms%MOD;
         
 
-        if(ms<=0){
-            if(s<0){
-                s+=MOD;
-                s%MOD;    
-            }
-            co(s);
-            return;
+        ll add=1;
+        ff(i,0,k){
+            add=add*2%MOD;
         }
+
+        ll ans=(s+())
         
-        ll add=ms;
-        ll aaa=add;
-
-        ff(i,2,k+1){
-            add=((2*add))%MOD;    
-            aaa=(aaa%MOD+add)%MOD;
-        }
-
-        ll ans=((aaa+s))%MOD;
-        if(ans<0){
-            ans=(ans+MOD)%MOD;
-        }
         cout<<ans;
     }
 };

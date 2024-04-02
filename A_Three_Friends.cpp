@@ -50,32 +50,27 @@ ll lcm(ll a,ll b) { return a/gcd(a,b)*b; }
 bool isPrime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
 bool isPerfectSq(ll sum){if(floor(sqrt(sum))== ceil(sqrt(sum)))return true;else return false;}
 long long binpow(long long a, long long b) {a %= MOD; long long res = 1;while (b > 0) {if (b & 1){res = res * a % MOD;}a = a * a % MOD;b >>= 1;}return res;}
-
+ll abs(ll a,ll b){
+    ll c=a-b;
+    if(c>0)return c;
+    else return -1*c;
+}
 class Solution {
 public:
     void solve() {
        //freopen("input.txt","r", stdin);
        //freopen("output.txt", "w", stdout);
-        string s;cin>>s;
-        //if double found -> right most is helpful (cause length remain same but value decrease eg: 5+5 =10)
-        //else left most -> cause value if greater than or equal 2+5=7
-        fb(i,s.size()-2,0){
-            if(s[i]-'0'+s[i+1]-'0'>=10){
-                ll sum=(s[i]-'0')+(s[i+1]-'0');
-                string ss=to_string(sum);
-                s[i]=ss[0];
-                s[i+1]=ss[1];
-                cout<<s;
-                return;
+        ll a,b,c;cin>>a>>b>>c;
+        ll ans=INT_MAX;
+        ff(i,a-1,a+2){
+            ff(j,b-1,b+2){
+                ff(k,c-1,c+2){
+                    ll curr=abs(i-j)+abs(i-k)+abs(j-k);
+                    ans=min(ans,curr);
+                }
             }
-        }
-        //left most
-        ll sum=(s[0]-'0')+(s[1]-'0');
-        string ss=to_string(sum);
-        s=s.substr(2,s.size()-2);//remove the first 2 digits from string
-        cout<<ss<<s;//print the new sum of the first two digits - removed part
-
-
+        }       
+        co(ans);
     }
 };
 
@@ -83,7 +78,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     ll tc=1;
-     cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++) {
         Solution s;
         s.solve();
