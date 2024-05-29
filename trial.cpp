@@ -40,3 +40,8 @@ int sol(vector<int> b, int N){
     return ans+1;
 }
 
+int main(){
+    for(int i=0;i<5;i++)cout<<i<<" ";
+    cout<<endl;
+    for(int i=0;i<5;++i)cout<<i<<" ";
+}

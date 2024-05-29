@@ -1,0 +1,1 @@
+{"name":"Local: hackOn_A_B","url":"c:\\Users\\dipan\\Desktop\\_\\cf\\hackOn_A_B.cpp","tests":[{"id":1716900966157,"input":"1\n1","output":"1"},{"id":1716900981426,"input":"3 \n2 2 2","output":"2 3 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\dipan\\Desktop\\_\\cf\\hackOn_A_B.cpp","group":"local","local":true}
