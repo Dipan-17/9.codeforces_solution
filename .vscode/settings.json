@@ -5,6 +5,7 @@
         "chrono": "cpp",
         "cmath": "cpp",
         "random": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "limits": "cpp"
     }
 }
